@@ -1,0 +1,87 @@
+<html>
+<head>
+  <title>Look24 :: Cloud Messaging Notification</title>
+  <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>  
+  <!-- <link rel="manifest" href="manifest.json"> -->
+
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "YOUR_SERVER_KEY",
+      authDomain: "YOUR_PROJECT_NAME.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_NAME.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_NAME.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script>
+    // Retrieve Firebase Messaging object.
+    const messaging = firebase.messaging();
+    messaging.requestPermission().then(function() {      
+      console.log('Notification permission granted.');
+      if(isTokenSentToServer()){
+        console.log('Token already sent to server');
+      } else {
+        //get fcm token
+        registerToken();
+      } 
+      registerToken();
+    }).catch(function(err) {
+      console.log('Unable to get permission to notify.', err);
+    });
+
+
+   // Registered
+   function registerToken(){
+      messaging.getToken()
+        .then(function(currentToken) {
+          if (currentToken) {
+            console.log(currentToken);
+            setTokenSentToServer(true);
+          } else {
+            // Show permission request.
+            //console.log('No Instance ID token available. Request permission to generate one.');
+            setTokenSentToServer(false);
+          }
+        }).catch(function(err) {
+          console.log('An error occurred while retrieving token. ', err);
+          showToken('Error retrieving Instance ID token. ', err);
+          setTokenSentToServer(false);
+        });
+    }
+
+    function setTokenSentToServer(sent) {
+      window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+    }
+
+    function isTokenSentToServer() {
+      return window.localStorage.getItem('sentToServer') === '1';
+    }
+
+    function showToken(currentToken) {
+      var tokenElement = document.querySelector('#token');
+      //tokenElement.textContent = currentToken;
+    }
+
+    // ForeGround
+    messaging.onMessage(function(payLoad)
+    {
+      console.log("Message Received");
+      console.log(payLoad);
+      notificationTitle = payLoad.notification.title;
+      notificationOptions = {
+        body: payLoad.notification.body,
+        icon: payLoad.notification.icon,
+      };
+      var notification = new Notification(notificationTitle, notificationOptions);
+    });
+  </script>
+</head>
+
+<body>
+  Look24 :: Cloud Messaging Notification
+</body>
+</html>
