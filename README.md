@@ -2,7 +2,7 @@
 * Firebase Cloud Messaging for Javascript Website Push Notification + Using PHP Send
 This is sample code for FCM Javascript Web, Hope can help some one who looking for the code and save your time to do FCM Web Notification.
 
-* ps. More over I also have FCM for Mobile Device Android and IOS complete project.
+* I have another repo FCM for mobile Android and IOS project.
 
 ![sample-noti](https://firebasestorage.googleapis.com/v0/b/look24-notification.appspot.com/o/FC-Web-noti.gif?alt=media&token=c9c12ce7-d9b7-4ca1-a5a0-49b4c17baa61)
 
