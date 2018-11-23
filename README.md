@@ -4,6 +4,7 @@ This is sample code for FCM Javascript Web, Hope can help some one who looking f
 
 * ps. More over I also have FCM for Mobile Device Android and IOS complete project.
 
+![sample-noti](https://firebasestorage.googleapis.com/v0/b/look24-notification.appspot.com/o/FC-Web-noti.gif?alt=media&token=c9c12ce7-d9b7-4ca1-a5a0-49b4c17baa61)
 
 ## Select Firebase console Select Push notification for Web
 ![alt text](https://firebasestorage.googleapis.com/v0/b/look24-notification.appspot.com/o/Firebase-Cloud-Messaging.png?alt=media&token=3d17bb90-7d7b-4d98-adb6-1ab49212c4d9)
